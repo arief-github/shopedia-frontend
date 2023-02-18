@@ -33,7 +33,7 @@ export const products = [{
   
 },{
   "id": 4,
-  "rating": 4.5,
+  "rating": 4,
 "reviews" : [],
   "price": 4800,
   "countInStock": 5,
@@ -44,7 +44,7 @@ export const products = [{
   
 },{
   "id": 5,
-  "rating": 5,
+  "rating": 3,
 "reviews" : [],
   "price": 800,
   "countInStock": 7,
@@ -55,7 +55,7 @@ export const products = [{
   
 },{
   "id": 6,
-  "rating": 5,
+  "rating": 4,
 "reviews" : [],
   "price": 56000,
   "countInStock": 6,
