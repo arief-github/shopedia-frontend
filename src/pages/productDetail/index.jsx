@@ -1,7 +1,8 @@
 import React from 'react';
-import { products } from '../../data/products.js';
 
 export default function ProductDetail({ match }) {
+	// const product = [];
+
 	const productId = match.params.id;
 
 	const product = products.find(product => product.id == productId);
