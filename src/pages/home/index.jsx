@@ -19,7 +19,7 @@ export default function Home() {
 			<Navbar/>
 			<div className="row justify-content-center">
 				{
-					products?.length ? (products.map((product) => (<div key={product._id}><Product product={product}/></div>))) : null
+					products?.length ? (products.map((product) => (<div className="col-md-3 m-3 card p-2" key={product._id}><Product product={product}/></div>))) : null
 				}
 			</div>
 		</>
