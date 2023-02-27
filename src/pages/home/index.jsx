@@ -1,27 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar';
-import Product from '../../components/Product';
-
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar";
+import Product from "../../components/Product";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../action/productActions";
 
 export default function Home() {
-	const [products, setProducts] = useState();
-	const url = import.meta.env.VITE_BASE_URL;
+  const getAllProductsState = useSelector(
+    (state) => state.getAllProductsReducer
+  );
 
-	useEffect(() => {
-		axios.get(`${url}/products/getallproducts`)
-		.then((res) => setProducts(res.data))
-		.catch((err) => console.error(err))
-	}, [])
+  const { loading, products, error } = getAllProductsState;
 
-	return (
-		<>
-			<Navbar/>
-			<div className="row justify-content-center">
-				{
-					products?.length ? (products.map((product) => (<div className="col-md-3 m-3 card p-2" key={product._id}><Product product={product}/></div>))) : null
-				}
-			</div>
-		</>
-	)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    
+    dispatch(getAllProducts());
+  
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <div className="row justify-content-center">
+        {loading ? (
+          <h1>Loading</h1>
+        ) : error ? (
+          <p>Something went wrong</p>
+        ) : (
+          products.map((product) => {
+            return (
+              <div className="col-md-3 m-3 card p-2">
+                <Product product={product} />
+              </div>
+            );
+          })
+        )}
+      </div>
+    </>
+  );
 }

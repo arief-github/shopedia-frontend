@@ -1,13 +1,20 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const getAllProducts = () => dispatch => {
+export const getAllProducts = () => (dispatch) => {
+  dispatch({ type: "GET_PRODUCTS_REQUEST" });
 
-    dispatch({ type: 'GET_PRODUCTS_REQUEST' })
+  const url = import.meta.env.VITE_BASE_URL;
 
-    const url =
-        import.meta.env.VITE_BASE_URL;
+  axios
+    .get(`${url}/products/getallproducts`)
+    .then((res) => {
+      console.log(res);
 
-    axios.get(`${url}/products/getallproducts`)
-        .then((res) => setProducts(res.data) dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: res.data }))
-        .catch((err) => console.error(err) dispatch({ type: 'GET_PRODUCTS_FAILURE', payload: err }))
-}
+      dispatch({ type: "GET_PRODUCTS_SUCCESS", payload: res.data });
+    })
+    .catch((err) => {
+      console.error(err);
+
+      dispatch({ type: "GET_PRODUCTS_FAILURE", payload: err });
+    });
+};
