@@ -29,7 +29,7 @@ const StarRating = ({ totalStars = 5 , selectedStars = 0 }) => {
 export default function Product({ product }) {
 	return (
 		<div>
-			<Link to={`/product/${product.id}`}>
+			<Link to={`product/${product._id}`}>
 				<img src={product.image} alt="product image" className="img-fluid"/>
 				<h1>{ product.name }</h1>
 				<h1>Price : { product.price } </h1>	
