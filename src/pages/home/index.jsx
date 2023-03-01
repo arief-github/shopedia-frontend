@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
 import Product from "../../components/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../action/productActions";
@@ -21,7 +20,6 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
       <div className="row justify-content-center">
         {loading ? (
           <h1>Loading</h1>

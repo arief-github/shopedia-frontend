@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../../action/productActions";
+import { addToCartAction } from '../../action/cartAction.js'
 
 export default function ProductDetail({ match }) {
   const productId = match.params.id;
+
+  const [qty, setQty] = useState(1);
+
   const dispatch = useDispatch();
   const getproductbyidstate = useSelector(
     (state) => state.getProductByIdReducer
   );
 
   const { product, loading, error } = getproductbyidstate;
+
+  const addToCart = () => {
+  	// alert(qty);
+  	dispatch(addToCartAction(product, qty))
+  }
 
   useEffect(() => {
     dispatch(getProductById(productId));
@@ -42,7 +51,7 @@ export default function ProductDetail({ match }) {
 
               <h1>Select Quantity</h1>
 
-              <select>
+              <select value={qty} onChange={(e) => { setQty(e.target.value) }}>
                 {product.countInStock === 0 ? (
                   <option value="">Out of Stock</option>
                 ) : (
@@ -55,9 +64,13 @@ export default function ProductDetail({ match }) {
               </select>
 
               <hr />
-              <button className="btn btn-dark text-uppercase">
+              {
+              	product.countInStock === 0 ? (  <button className="btn btn-dark text-uppercase" disabled>
                 Add to Cart
-              </button>
+              </button>) : (  <button className="btn btn-dark text-uppercase" onClick={ addToCart }>
+                Add to Cart
+              </button>)
+              }
             </div>
           </div>
         </div>

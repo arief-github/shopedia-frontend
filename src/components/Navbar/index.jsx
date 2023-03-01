@@ -1,8 +1,15 @@
 import React from 'react';
 import './Navbar.css';
 import  { FaShoppingCart } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
-export default function Navbar() {
+function Navbar() {
+
+	const addToCartReducer = useSelector(state => state.addToCartReducer);
+
+	const { cartItems } = addToCartReducer;
+
 	return (
 		<nav className="navbar navbar-expand-lg">
 		  <div className="container-fluid">
@@ -16,7 +23,7 @@ export default function Navbar() {
 		          <a className="nav-link" href="#">Login</a>
 		        </li>
 		        <li className="nav-item">
-		          <a className="nav-link disabled"> <FaShoppingCart/> </a>
+		          <Link to="/cart"> <FaShoppingCart/> { cartItems.length } </Link> 
 		        </li>
 		      </ul>
 		    </div>
@@ -24,3 +31,5 @@ export default function Navbar() {
 		</nav>
 	)
 }
+
+export default withRouter(Navbar);
