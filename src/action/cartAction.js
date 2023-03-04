@@ -10,7 +10,13 @@ const addToCartAction = (product, quantity) => (dispatch, getState) => {
 
     dispatch({ type: 'ADD_TO_CART', payload: cartItem })
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().addToCartReducer.cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems))
 }
 
-export { addToCartAction };
+const deleteFromCart = (item) => (dispatch, getState) => {
+    dispatch({ type: 'DELETE_FROM_CART', payload: item })
+
+    localStorage.setItem('cartItems', JSON.stringify(getState().cartReducer.cartItems))
+}
+
+export { addToCartAction, deleteFromCart };

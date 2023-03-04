@@ -1,4 +1,4 @@
-const addToCartReducer = (state = { cartItems: [] }, action) => {
+const cartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
         case 'ADD_TO_CART':
             const alreadyExist = state.cartItems.find(item => item._id == action.payload._id);
@@ -11,9 +11,14 @@ const addToCartReducer = (state = { cartItems: [] }, action) => {
             } else {
                 return { ...state, cartItems: [...state.cartItems, action.payload] }
             }
+        case 'DELETE_FROM_CART' :
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(item => { return item._id !== action.payload._id })
+            }
         default:
             return state;
     }
 }
 
-export default addToCartReducer;
+export default cartReducer;

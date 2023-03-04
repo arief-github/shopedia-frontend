@@ -6,9 +6,9 @@ import { Link, withRouter } from 'react-router-dom';
 
 function Navbar() {
 
-	const addToCartReducer = useSelector(state => state.addToCartReducer);
+	const cartReducer = useSelector(state => state.cartReducer);
 
-	const { cartItems } = addToCartReducer;
+	const { cartItems } = cartReducer;
 
 	return (
 		<nav className="navbar navbar-expand-lg">
