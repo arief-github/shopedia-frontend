@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../action/productActions";
+import Loading from "../../components/Common/Loading";
+import Error from "../../components/Common/Error";
 
 export default function Home() {
   const getAllProductsState = useSelector(
@@ -22,9 +24,9 @@ export default function Home() {
     <>
       <div className="row justify-content-center">
         {loading ? (
-          <h1>Loading</h1>
+          <Loading/>
         ) : error ? (
-          <p>Something went wrong</p>
+          <Error error="Something Went Wrong"/>
         ) : (
           products.map((product) => {
             return (

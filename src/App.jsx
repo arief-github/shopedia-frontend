@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from './pages/home';
 import ProductDetail from './pages/productDetail';
 import CartPage from './pages/cartPage';
+import { Register, Login } from './pages/authPages';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
          <Route exact path="/" component={Home} />
          <Route path="/product/:id" component={ProductDetail}/>
          <Route path="/cart" component={CartPage} />   
+         <Route path="/register" component={Register} />
+         <Route path="/login" component={Login} />
       </Router>
     </div>
   )

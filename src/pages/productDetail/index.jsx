@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../../action/productActions";
-import { addToCartAction } from '../../action/cartAction.js'
+import { addToCartAction } from '../../action/cartAction.js';
+import Loading from "../../components/Common/Loading";
+import Error from "../../components/Common/Error";
 
 export default function ProductDetail({ match }) {
   const productId = match.params.id;
@@ -27,9 +29,9 @@ export default function ProductDetail({ match }) {
   return (
     <>
       {loading ? (
-        <p>Loading...</p>
+        <Loading/>
       ) : error ? (
-        <p>Error...</p>
+        <Error/>
       ) : (
         <div className="row">
           <div className="col-md-6">
