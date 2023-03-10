@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../action/productActions";
 import Loading from "../../components/Common/Loading";
 import Error from "../../components/Common/Error";
+import Filter from "../../components/Filter";
 
 export default function Home() {
   const getAllProductsState = useSelector(
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <>
       <div className="row justify-content-center">
+        <Filter/>
         {loading ? (
           <Loading/>
         ) : error ? (
