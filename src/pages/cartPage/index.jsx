@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiDeleteBin2Line } from 'react-icons/ri'
 import { addToCartAction, deleteFromCart } from '../../action/cartAction';
+import Checkout from '../../components/Checkout';
 
 const CartPage = () => {
 	const cardreducerstate = useSelector(state => state.cartReducer);
@@ -56,7 +57,7 @@ const CartPage = () => {
 				<hr />
 				<h2 className="text-center">Sub Total : {subtotal}</h2>
 				<hr />
-				<button className='text-center' style={{ backgroundColor: 'black', color: 'white', width: 200, margin: '0 auto' }}>Pay Now</button>
+			    <Checkout amount={subtotal} />
 			</div>
 		</div>
 	)
