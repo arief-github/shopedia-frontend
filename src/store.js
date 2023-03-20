@@ -1,4 +1,4 @@
-import { getAllProductsReducer, getProductByIdReducer } from './reducer/productReducer';
+import { getAllProductsReducer, getProductByIdReducer, addProductReviewReducer } from './reducer/productReducer';
 import cartReducer from './reducer/cartReducer';
 import { placeOrderReducer, getOrdersByUserIdReducer, getOrderByIdReducer } from './reducer/orderReducer';
 import { registerNewUserReducer, loginReducer } from './reducer/userReducer';
@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 const finalReducer = combineReducers({
 	getAllProductsReducer: getAllProductsReducer,
 	getProductByIdReducer: getProductByIdReducer,
+	addProductReviewReducer: addProductReviewReducer,
 	cartReducer: cartReducer,
 	placeOrderReducer: placeOrderReducer,
 	getOrdersByUserIdReducer: getOrdersByUserIdReducer,

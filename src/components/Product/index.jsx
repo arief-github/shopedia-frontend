@@ -1,30 +1,7 @@
 import React, { useState } from 'react';
 import './Product.css';
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
-
-const createArray = length => [...Array(length)];
-
-const Star = ({ selected = false }) => (
-	<FaStar color={ selected ? "red" : "grey" }/>
-)
-
-const StarRating = ({ totalStars = 5 , selectedStars = 0 }) => {
-	return (
-		<>
-			{
-				createArray(totalStars).map((n, i) => (
-					<Star
-						key={i}
-						selected = { selectedStars > i }
-					/>
-				))
-			}
-
-		</>
-	)
-}
-
+import StarRating from '../StarRating';
 
 export default function Product({ product }) {
 	return (

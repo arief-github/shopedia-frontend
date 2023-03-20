@@ -71,4 +71,18 @@ const filterProduct = (searchKey, sortKey, category) => dispatch => {
   })
 }
 
-export { getAllProducts, getProductById, filterProduct };
+const addProductReview = (review, productid) => (dispatch, getState) => {
+  dispatch({ type: 'ADD_PRODUCT_REVIEW_REQUEST' })
+
+  const currentUser = getState().loginReducer.currentUser;
+
+  axios.post(`${url}/products/addreview`, {review, productid, currentUser})
+  .then((res) => {
+    dispatch({ type: 'ADD_PRODUCT_REVIEW_SUCCESS' })
+  })
+  .catch((err) => {
+    dispatch({ type: 'ADD_PRODUCT_REVIEW_FAILED' })
+  })
+}
+
+export { getAllProducts, getProductById, filterProduct, addProductReview };

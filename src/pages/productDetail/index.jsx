@@ -4,6 +4,7 @@ import { getProductById } from "../../action/productActions";
 import { addToCartAction } from '../../action/cartAction.js';
 import Loading from "../../components/Common/Loading";
 import Error from "../../components/Common/Error";
+import Review from "../../components/Review";
 
 export default function ProductDetail({ match }) {
   const productId = match.params.id;
@@ -73,6 +74,10 @@ export default function ProductDetail({ match }) {
                 Add to Cart
               </button>)
               }
+
+              <hr/>
+
+              <Review product={product}/>
             </div>
           </div>
         </div>
