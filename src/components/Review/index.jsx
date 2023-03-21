@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory, withRouter } from 'react-router-dom';
 import { addProductReview } from '../../action/productActions';
 import StarRating from '../StarRating';
 
-export default function Review({ product }) {
+function Review({ product }) {
   const [comment, setComment] = useState('');
   const [selectedStar, setSelectedStar] = useState(0);
   const [reviews, setReviews] = useState(product.reviews);
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -15,34 +18,40 @@ export default function Review({ product }) {
   }
 
   const handleSubmitReview = () => {
-    setComment("");
-    setSelectedStar(0);
 
-    // checking wheter id and review has same
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    let alreadyViewed;
-
-    for(let i = 0; i < product.reviews.length; i++) {
-      if(product.reviews[i].user === currentUser._id) {
-        alreadyViewed = true;
-      }
-    }
-
-    if(alreadyViewed) {
-      alert('You have already reviewed this product') 
-    } else {
-        const review = {
-            rating: selectedStar,
-            comment: comment,
-            name: currentUser.name,
+    if(localStorage.getItem('currentUser')) {
+        setComment("");
+        setSelectedStar(0);
+    
+        // checking wheter id and review has same
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+        let alreadyViewed;
+    
+        for(let i = 0; i < product.reviews.length; i++) {
+          if(product.reviews[i].user === currentUser._id) {
+            alreadyViewed = true;
+          }
         }
-        dispatch(addProductReview(review, product._id))
-
-        const newReviews = [...reviews, review];
-        setReviews(newReviews);
+    
+        if(alreadyViewed) {
+          alert('You have already reviewed this product') 
+        } else {
+            const review = {
+                rating: selectedStar,
+                comment: comment,
+                name: currentUser.name,
+            }
+            dispatch(addProductReview(review, product._id))
+    
+            const newReviews = [...reviews, review];
+            setReviews(newReviews);
+        }
+    } else {
+      history.push('/login');
     }
   }
+
 
   return (
     <div>
@@ -69,3 +78,5 @@ export default function Review({ product }) {
     </div>
   )
 }
+
+export default withRouter(Review);
