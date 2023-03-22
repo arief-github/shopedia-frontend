@@ -34,8 +34,8 @@ function Navbar() {
 								<Dropdown isOpen={dropdownOpen} toggle={toggle}>
 									<DropdownToggle caret>{currentUser.name}</DropdownToggle>
 									<DropdownMenu>
-										<DropdownItem>Profile</DropdownItem>
-										<DropdownItem><Link to="/orders">Order</Link></DropdownItem>
+										<Link to="/profile"><DropdownItem>Profile</DropdownItem></Link>
+										<Link to="/orders"><DropdownItem>Order</DropdownItem></Link>
 										<DropdownItem onClick={() => dispatch(logoutUser())}>Logout</DropdownItem>
 									</DropdownMenu>
 								</Dropdown>

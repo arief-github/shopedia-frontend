@@ -37,4 +37,17 @@ const loginReducer = (state={}, action) => {
     }
 }
 
-export { registerNewUserReducer, loginReducer };
+const updateReducer = (state={}, action) => {
+    switch(action.type) {
+        case 'USER_UPDATE_REQUEST' :
+            return { ...state, loading: true }
+        case 'USER_UPDATE_SUCCESS' :
+            return { ...state, loading: false, success: true }
+        case 'USER_UPDATE_FAILED' :
+            return { ...state, loading: false, error: 'User already registred' }
+        default :
+            return state;
+    }
+}
+
+export { registerNewUserReducer, loginReducer, updateReducer };
