@@ -1,0 +1,13 @@
+.AdminPage {
+    margin: 0 50px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+ul li {
+    list-style-type: none;
+}

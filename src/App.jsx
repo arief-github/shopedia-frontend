@@ -10,6 +10,7 @@ import { Register, Login } from './pages/authPages';
 import OrderPage from './pages/orderPage';
 import OrderDetail from './pages/orderDetail';
 import ProfilePage from './pages/profilPage';
+import AdminPage from './pages/adminPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
          <Route path="/orders" component={OrderPage} />
          <Route path="/orderinfo/:orderid" component={OrderDetail}/>
          <Route path="/profile" component={ProfilePage} />
+         <Route path="/admin" component={AdminPage}/>
       </Router>
     </div>
   )

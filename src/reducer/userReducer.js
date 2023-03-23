@@ -49,5 +49,30 @@ const updateReducer = (state={}, action) => {
             return state;
     }
 }
+const getAllUsersReducer = (state={users: []}, action) => {
+    switch(action.type) {
+        case 'GET_ALL_USERS_REQUEST' :
+            return { ...state, loading: true }
+        case 'GET_ALL_USERS_SUCCESS' :
+            return { ...state, loading: false, users: action.payload }
+        case 'GET_ALL_USERS_FAILED' :
+            return { ...state, loading: false, error: action.payload }
+        default :
+            return state;
+    }
+}
 
-export { registerNewUserReducer, loginReducer, updateReducer };
+const deleteUserReducer = (state={}, action) => {
+    switch(action.type) {
+        case 'DELETE_USER_REQUEST':
+            return { ...state, loading: false }
+        case 'DELETE_USER_SUCCESS' :
+            return { ...state, loading: false, success: true }
+        case 'DELETE_USER_FAILED' :
+            return { ...state, loading: false, error: action.payload }
+        default :
+            return state;
+    }
+}
+
+export { registerNewUserReducer, loginReducer, updateReducer, getAllUsersReducer, deleteUserReducer };
