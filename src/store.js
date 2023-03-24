@@ -1,6 +1,6 @@
 import { getAllProductsReducer, getProductByIdReducer, addProductReviewReducer, deleteProductReducer } from './reducer/productReducer';
 import cartReducer from './reducer/cartReducer';
-import { placeOrderReducer, getOrdersByUserIdReducer, getOrderByIdReducer } from './reducer/orderReducer';
+import { placeOrderReducer, getOrdersByUserIdReducer, getOrderByIdReducer, getAllOrdersReducer } from './reducer/orderReducer';
 import { registerNewUserReducer, loginReducer, updateReducer, getAllUsersReducer, deleteUserReducer } from './reducer/userReducer';
 
 import { combineReducers } from 'redux';
@@ -17,6 +17,7 @@ const finalReducer = combineReducers({
 	placeOrderReducer: placeOrderReducer,
 	getOrdersByUserIdReducer: getOrdersByUserIdReducer,
 	getOrderByIdReducer: getOrderByIdReducer,
+	getAllOrdersReducer: getAllOrdersReducer,
 	registerNewUserReducer: registerNewUserReducer,
 	loginReducer: loginReducer,
 	updateReducer: updateReducer,

@@ -44,4 +44,16 @@ const getOrderByID = (orderid) => (dispatch, getState) => {
     })
 }
 
-export { placeOrder, getOrdersByUserID, getOrderByID };
+const getAllOrders = () => (dispatch, getState) => {
+    dispatch({ type: 'GET_ALL_ORDERS_REQUEST' })
+
+    axios.get(`${url}/orders/getallorders`)
+    .then((res) => {
+        dispatch({ type: 'GET_ALL_ORDERS_SUCCESS', payload: res.data })
+    })
+    .catch((err) => {
+        dispatch({ type: 'GET_ALL_ORDERS_FAILED', payload: err })
+    })
+}
+
+export { placeOrder, getOrdersByUserID, getOrderByID, getAllOrders };
