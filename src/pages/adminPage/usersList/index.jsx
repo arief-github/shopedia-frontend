@@ -50,7 +50,7 @@ export default function UsersList() {
                 <td><FaTrash onClick={() => {handleDelete({userid: user._id, username: user.name})}}/></td> 
               </tr>
             ))
-          ) : null }
+          ) : (<h2>No Users Registered Available At This Time</h2>) }
         </tbody>
       </table>
     </div>

@@ -85,4 +85,18 @@ const addProductReview = (review, productid) => (dispatch, getState) => {
   })
 }
 
-export { getAllProducts, getProductById, filterProduct, addProductReview };
+const deleteProduct = (productid) => dispatch => {
+  dispatch({ type: 'DELETE_PRODUCT_REQUEST' });
+
+  axios
+  .post(`${url}/products/deleteproduct`, { productid })
+  .then((res) => {
+    dispatch({ type: 'DELETE_PRODUCT_SUCCESS' , payload: productid})
+    alert("Product Deleted Successfully")
+  })
+  .catch((err) => {
+    dispatch({ type: 'DELETE_PRODUCT_ERROR', payload: err })
+  })
+}
+
+export { getAllProducts, getProductById, filterProduct, addProductReview, deleteProduct };
