@@ -44,6 +44,7 @@ export default function Filter() {
             >
               <option value="all">All</option>
               <option value="electronics">Electronics</option>
+              <option value="technologies">Technologies</option>
               <option value="fashion">Fashion</option>
               <option value="mobiles">Mobiles</option>
               <option value="games">Games</option>

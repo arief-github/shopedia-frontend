@@ -16,7 +16,7 @@ export default function ProductsList() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [deleteProduct]);
+  }, [deletedProduct]);
 
   const handleDelete = (productid) => {
     dispatch(deleteProduct(productid))
@@ -48,7 +48,7 @@ export default function ProductsList() {
                 <td>{product.countInStock}</td>
                 <td>{product._id}</td>
                 <td>
-                  <FaTrash onClick={() => { handleDelete(product._id) }}/>
+                  <FaTrash onClick={() => { handleDelete(product._id) }} className="mx-2"/>
                   <Link to={`/admin/editproduct/${product._id}`}>
                     <FaEdit/>
                   </Link>

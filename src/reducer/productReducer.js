@@ -50,4 +50,30 @@ const deleteProductReducer = (state={}, action) => {
     }
 }
 
-export { getAllProductsReducer, getProductByIdReducer, addProductReviewReducer, deleteProductReducer };
+const addProductReducer = (state={}, action) => {
+    switch(action.type) {
+        case 'ADD_PRODUCT_REQUEST' :
+            return { ...state, loading: true }
+        case 'ADD_PRODUCT_SUCCESS' :
+            return { ...state, loading: false, success: true }
+        case 'ADD_PRODUCT_FAILED' :
+            return { ...state, loading: false, error: action.payload }
+        default :
+            return state;
+    }
+}
+
+const updateProductReducer = (state={}, action) => {
+    switch(action.type) {
+        case 'UPDATE_PRODUCT_REQUEST' :
+            return { ...state, loading: true }
+        case 'UPDATE_PRODUCT_SUCCESS' :
+            return { ...state, loading: false, success: true }
+        case 'UPDATE_PRODUCT_FAILED' :
+            return { ...state, loading: false, error: true }
+        default :
+            return state;
+    }
+}
+
+export { getAllProductsReducer, getProductByIdReducer, addProductReviewReducer, deleteProductReducer, addProductReducer, updateProductReducer };

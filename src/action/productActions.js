@@ -99,4 +99,31 @@ const deleteProduct = (productid) => dispatch => {
   })
 }
 
-export { getAllProducts, getProductById, filterProduct, addProductReview, deleteProduct };
+const addProduct = (product) => dispatch => {
+  dispatch({ type: 'ADD_PRODUCT_REQUEST' });
+
+  axios
+    .post(`${url}/products/addproduct`, { product })
+    .then((res) => {
+      dispatch({ type: 'ADD_PRODUCT_SUCCESS' })
+    })
+    .catch((err) => {
+      dispatch({ type: 'ADD_PRODUCT_FAILED', payload: err })
+    })
+}
+
+const updateProduct = (productid, updatedproduct) => dispatch => {
+  dispatch({ type: 'UPDATE_PRODUCT_REQUEST' });
+
+  axios
+    .post(`${url}/products/updateproduct`, { productid, updatedproduct })
+    .then((res) => {
+      dispatch({ type: 'UPDATE_PRODUCT_SUCCESS', payload: res.data })
+    })
+    .catch((err) => {
+      dispatch({ type: 'UPDATE_PRODUCT_FAILED', payload: err })
+    })
+}
+
+
+export { getAllProducts, getProductById, filterProduct, addProductReview, deleteProduct, addProduct, updateProduct };
