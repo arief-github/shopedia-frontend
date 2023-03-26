@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Navbar from "./components/Navbar";
 import Home from './pages/home';
@@ -13,6 +13,8 @@ import ProfilePage from './pages/profilPage';
 import AdminPage from './pages/adminPage';
 
 function App() {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
   return (
     <div className="App">
       <Router>
@@ -25,9 +27,21 @@ function App() {
          <Route path="/orders" component={OrderPage} />
          <Route path="/orderinfo/:orderid" component={OrderDetail}/>
          <Route path="/profile" component={ProfilePage} />
-         <Route path="/admin" component={AdminPage}/>
+         <PrivateRoute path="/admin" component={AdminPage} currentUser={currentUser}/>
       </Router>
     </div>
+  )
+}
+
+function PrivateRoute({ component: Component, currentUser, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        currentUser && currentUser.isAdmin ?
+          <Component {...props}/> : <Redirect to="/"/>
+      )}
+    />
   )
 }
 

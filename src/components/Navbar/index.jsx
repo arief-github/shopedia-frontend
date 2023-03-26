@@ -23,7 +23,7 @@ function Navbar() {
 	return (
 		<nav className="navbar navbar-expand-lg">
 			<div className="container-fluid">
-				<a className="navbar-brand" href="#">Shopedia</a>
+				<Link to="/"><span className='navbar-brand'>Shopedia</span></Link>
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon" style={{ color: 'white' }}></span>
 				</button>
@@ -34,6 +34,9 @@ function Navbar() {
 								<Dropdown isOpen={dropdownOpen} toggle={toggle}>
 									<DropdownToggle caret>{currentUser.name}</DropdownToggle>
 									<DropdownMenu>
+										{
+											currentUser.isAdmin ? (<Link to="/admin"> <DropdownItem>Admin</DropdownItem> </Link>) : null
+										}
 										<Link to="/profile"><DropdownItem>Profile</DropdownItem></Link>
 										<Link to="/orders"><DropdownItem>Order</DropdownItem></Link>
 										<DropdownItem onClick={() => dispatch(logoutUser())}>Logout</DropdownItem>
